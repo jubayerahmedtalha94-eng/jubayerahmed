@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jubayer Ahmed &mdash; Chemical Engineering Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060a0b;--surface:#0e1416;--surface2:#141b1d;--border:#1a2426;--accent:#00d4aa;--accent2:#ff6b35;--accent3:#7eb8c9;--text:#e8eff0;--muted:#5a7a80;--highlight:#00d4aa18;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;overflow-x:hidden;cursor:none;}
+#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:screen;}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(0,212,170,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,.025) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0;}
+.bg-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);}
+.orb1{width:500px;height:500px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(0,212,170,.08),transparent 70%);animation:orb-drift 12s ease-in-out infinite;}
+.orb2{width:400px;height:400px;bottom:-100px;right:-100px;background:radial-gradient(circle,rgba(255,107,53,.07),transparent 70%);animation:orb-drift 9s ease-in-out infinite reverse;}
+.orb3{width:300px;height:300px;top:50%;left:50%;background:radial-gradient(circle,rgba(126,184,201,.05),transparent 70%);animation:orb-drift 15s ease-in-out infinite 3s;}
+@keyframes orb-drift{0%,100%{transform:translate(0,0);}33%{transform:translate(40px,-30px);}66%{transform:translate(-20px,50px);}}
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent3));z-index:300;width:0%;box-shadow:0 0 8px var(--accent);transition:width .1s linear;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(6,10,11,.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:padding .3s,background .3s;}
+nav.scrolled{padding:12px 56px;background:rgba(6,10,11,.95);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.5px;color:var(--accent);display:flex;align-items:center;gap:8px;}
+.nav-logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+section{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 56px;}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 320px;align-items:center;gap:72px;padding-top:100px;padding-bottom:60px;position:relative;}
+.hero-left{display:flex;flex-direction:column;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,212,170,.35);padding:6px 14px;border-radius:2px;margin-bottom:36px;width:fit-content;background:rgba(0,212,170,.05);animation:heroFadeUp .9s .1s ease both;}
+.hero-tag-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+h1.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(44px,6.5vw,84px);line-height:.95;letter-spacing:-2px;color:var(--text);animation:heroFadeUp .9s .2s ease both;}
+h1.hero-name em{font-style:italic;color:var(--accent3);}
+.hero-typed-wrap{margin-top:22px;font-size:13px;color:var(--muted);letter-spacing:.04em;animation:heroFadeUp .9s .35s ease both;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.hero-typed{color:var(--accent2);}
+.typed-cursor{display:inline-block;width:2px;height:1em;background:var(--accent2);vertical-align:middle;animation:blink .9s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero-desc{margin-top:20px;max-width:500px;color:#7fa8b0;font-size:13px;line-height:1.85;animation:heroFadeUp .9s .45s ease both;}
+.hero-actions{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;animation:heroFadeUp .9s .55s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#060a0b;padding:13px 30px;border-radius:3px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.06em;transition:all .25s;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .3s;}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,212,170,.35);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--text);padding:13px 30px;border-radius:3px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;transition:all .25s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-stats{margin-top:56px;display:flex;gap:36px;animation:heroFadeUp .9s .65s ease both;}
+.stat-item{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--accent);line-height:1;}
+.stat-label{font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+.stat-divider{width:1px;background:var(--border);align-self:stretch;}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.hero-right{position:relative;animation:photoReveal 1.1s .5s ease both;display:flex;flex-direction:column;align-items:center;}
+@keyframes photoReveal{from{opacity:0;transform:translateX(50px) scale(.92);}to{opacity:1;transform:translateX(0) scale(1);}}
+.photo-outer{position:relative;width:280px;height:340px;}
+.photo-spin-ring{position:absolute;inset:-4px;border-radius:16px;background:conic-gradient(from 0deg,var(--accent) 0%,var(--accent3) 30%,var(--accent2) 60%,var(--accent) 100%);animation:spin-border 5s linear infinite;z-index:0;}
+@keyframes spin-border{to{transform:rotate(360deg);}}
+.photo-inner-mask{position:absolute;inset:3px;border-radius:13px;background:var(--bg);z-index:1;}
+.photo-img-wrap{position:absolute;inset:3px;border-radius:13px;overflow:hidden;z-index:2;}
+.photo-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
+.photo-outer:hover .photo-img{transform:scale(1.05);}
+.photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;transition:all .3s;background:var(--surface);}
+.photo-placeholder:hover .ph-circle{border-color:var(--accent);background:rgba(0,212,170,.08);}
+.ph-circle{width:80px;height:80px;border-radius:50%;background:var(--surface2);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:32px;transition:all .3s;}
+.ph-text{font-size:11px;color:var(--muted);text-align:center;line-height:1.6;letter-spacing:.06em;}
+.ph-text strong{display:block;color:var(--accent);font-size:12px;margin-bottom:4px;font-family:'Syne',sans-serif;}
+.photo-glow{position:absolute;inset:-20px;border-radius:20px;background:radial-gradient(circle,rgba(0,212,170,.12),transparent 70%);z-index:-1;animation:glow-pulse 3s ease-in-out infinite;}
+@keyframes glow-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+.photo-chip{position:absolute;background:rgba(14,20,22,.92);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:11px;display:flex;align-items:center;gap:8px;backdrop-filter:blur(10px);z-index:10;white-space:nowrap;}
+.chip1{top:-16px;right:-28px;animation:chip-float 4s ease-in-out infinite;}
+.chip2{bottom:50px;left:-36px;animation:chip-float 3.5s ease-in-out infinite 1s;}
+.chip3{bottom:-14px;right:16px;animation:chip-float 4.5s ease-in-out infinite .5s;}
+.chip-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.chip-dot.g{background:var(--accent);}.chip-dot.o{background:var(--accent2);}.chip-dot.b{background:var(--accent3);}
+@keyframes chip-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:heroFadeUp 1s 1.4s ease both;z-index:2;}
+.scroll-hint span{font-size:9px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scroll-drop 2s ease-in-out infinite;}
+@keyframes scroll-drop{0%{transform:scaleY(0);transform-origin:top;opacity:1;}49%{transform:scaleY(1);transform-origin:top;opacity:1;}50%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent);position:relative;z-index:1;}
+.section-header{display:flex;align-items:baseline;gap:16px;margin-bottom:52px;padding-top:100px;}
+.section-num{font-size:10px;color:var(--accent);letter-spacing:.2em;}
+.section-title{font-family:'DM Serif Display',serif;font-size:42px;letter-spacing:-1px;color:var(--text);line-height:1;}
+.section-line{flex:1;height:1px;background:var(--border);margin-left:8px;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding-bottom:100px;}
+.about-text p{color:#8aadb3;margin-bottom:18px;font-size:13.5px;line-height:1.85;}
+.about-info{display:flex;flex-direction:column;gap:10px;}
+.info-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:6px;transition:border-color .25s,transform .25s,box-shadow .25s;}
+.info-row:hover{border-color:var(--accent);transform:translateX(5px);box-shadow:-4px 0 20px rgba(0,212,170,.07);}
+.info-icon{font-size:18px;width:22px;text-align:center;flex-shrink:0;}
+.info-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;}
+.info-val{font-size:13px;color:var(--text);margin-top:2px;}
+.info-val a{color:var(--accent3);text-decoration:none;transition:color .2s;}
+.info-val a:hover{color:var(--accent);}
+.edu-grid{padding-bottom:100px;display:flex;flex-direction:column;gap:16px;}
+.edu-card{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:start;padding:28px 32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .25s;position:relative;overflow:hidden;}
+.edu-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent3));transform:scaleY(0);transform-origin:top;transition:transform .35s;}
+.edu-card:hover{border-color:rgba(0,212,170,.3);transform:translateX(6px);}
+.edu-card:hover::before{transform:scaleY(1);}
+.edu-icon{width:46px;height:46px;background:var(--highlight);border:1px solid rgba(0,212,170,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.edu-body h3{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--text);margin-bottom:5px;}
+.edu-inst{color:var(--accent3);font-size:12px;margin-bottom:5px;}
+.edu-detail{color:var(--muted);font-size:11px;}
+.edu-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.edu-year{font-size:10px;color:var(--accent);letter-spacing:.1em;white-space:nowrap;}
+.edu-badge{font-size:10px;padding:4px 10px;border-radius:3px;background:var(--highlight);color:var(--accent);border:1px solid rgba(0,212,170,.25);}
+.interests-grid{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:64px;}
+.interest-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--surface);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--text);transition:all .25s;cursor:default;}
+.interest-tag:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,212,170,.1);}
+.interest-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.research-grid{padding-bottom:100px;display:flex;flex-direction:column;gap:24px;}
+.research-card{padding:36px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .3s;position:relative;overflow:hidden;}
+.research-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,212,170,.04) 0%,transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.research-card:hover{border-color:rgba(0,212,170,.25);box-shadow:0 4px 40px rgba(0,212,170,.06);}
+.research-card:hover::after{opacity:1;}
+.research-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.badge{font-size:10px;padding:4px 11px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;}
+.badge-pub{background:rgba(0,212,170,.12);color:var(--accent);border:1px solid rgba(0,212,170,.25);}
+.badge-journal{background:rgba(126,184,201,.12);color:var(--accent3);border:1px solid rgba(126,184,201,.25);}
+.research-year{font-size:11px;color:var(--muted);margin-left:auto;}
+.research-card h3{font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);margin-bottom:14px;letter-spacing:-.3px;line-height:1.3;}
+.research-card p{color:#7aa5ac;font-size:13px;line-height:1.85;margin-bottom:24px;}
+.research-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.research-authors{font-size:11px;color:var(--muted);}
+.research-authors span{color:var(--accent3);}
+.paper-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--accent);text-decoration:none;border:1px solid rgba(0,212,170,.3);padding:7px 16px;border-radius:3px;transition:all .2s;}
+.paper-link:hover{background:var(--highlight);border-color:var(--accent);transform:translateX(2px);}
+.skills-section{padding-bottom:100px;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.skill-category{padding:26px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all .25s;position:relative;overflow:hidden;}
+.skill-category::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.skill-category:hover{border-color:rgba(0,212,170,.2);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.25);}
+.skill-category:hover::before{transform:scaleX(1);}
+.skill-cat-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.skill-cat-icon{font-size:20px;}
+.skill-cat-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--text);}
+.skill-list{display:flex;flex-wrap:wrap;gap:7px;}
+.skill-tag{font-size:11px;padding:5px 11px;border-radius:3px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);transition:all .2s;cursor:default;}
+.skill-tag:hover{color:var(--text);border-color:var(--accent3);background:rgba(126,184,201,.08);transform:scale(1.05);}
+
+/* ── GALLERY ────────────────────────────────────────── */
+.gallery-section{padding-bottom:100px;}
+.gallery-intro{font-size:12px;color:var(--muted);margin-bottom:32px;padding:14px 20px;background:var(--surface);border:1px solid var(--border);border-radius:6px;border-left:3px solid var(--accent);line-height:1.7;}
+.gallery-intro code{color:var(--accent3);font-family:'DM Mono',monospace;}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+
+/* entry animation — slides up + fades in */
+.gallery-card{
+  position:relative;border-radius:12px;overflow:hidden;
+  border:1px solid var(--border);background:var(--surface);
+  cursor:pointer;
+  opacity:0;transform:translateY(40px) scale(.97);
+  transition:opacity .7s ease,transform .7s ease,border-color .3s,box-shadow .3s;
+}
+.gallery-card.visible{opacity:1;transform:translateY(0) scale(1);}
+.gallery-card:nth-child(2){transition-delay:.15s;}
+.gallery-card:hover{border-color:var(--accent);box-shadow:0 20px 56px rgba(0,212,170,.13);}
+
+/* shimmer before image loads */
+.gallery-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.6s infinite;
+  z-index:0;
+}
+.gallery-card.loaded::before{display:none;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+.gallery-img-wrap{overflow:hidden;position:relative;z-index:1;min-height:240px;}
+.gallery-img-wrap img{
+  width:100%;display:block;object-fit:cover;
+  transition:transform .55s cubic-bezier(.25,.46,.45,.94),filter .4s;
+  filter:brightness(.92);
+}
+.gallery-card:hover .gallery-img-wrap img{transform:scale(1.06);filter:brightness(1);}
+
+/* overlay on hover */
+.gallery-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to top,rgba(6,10,11,.7) 0%,transparent 50%);
+  opacity:0;transition:opacity .35s;
+  display:flex;align-items:flex-end;padding:20px;
+}
+.gallery-card:hover .gallery-overlay{opacity:1;}
+.gallery-overlay-text{font-size:12px;color:var(--accent);letter-spacing:.08em;display:flex;align-items:center;gap:6px;}
+
+.gallery-caption{
+  padding:14px 20px;font-size:12px;color:var(--muted);
+  border-top:1px solid var(--border);background:var(--surface);
+  display:flex;align-items:center;gap:8px;position:relative;z-index:1;
+}
+.gallery-caption-dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);flex-shrink:0;animation:pulse 2.5s infinite;}
+
+/* placeholder when no image */
+.gallery-placeholder{
+  min-height:240px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  background:var(--surface2);position:relative;z-index:1;
+  border-bottom:1px dashed var(--border);
+}
+.gallery-placeholder-icon{font-size:40px;opacity:.4;}
+.gallery-placeholder-text{font-size:11px;color:var(--muted);text-align:center;line-height:1.6;}
+.gallery-placeholder-text code{color:var(--accent3);font-family:'DM Mono',monospace;display:block;margin-top:4px;font-size:12px;}
+
+/* LIGHTBOX */
+#lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(6,10,11,.96);backdrop-filter:blur(20px);align-items:center;justify-content:center;padding:32px;animation:lbIn .3s ease;}
+#lightbox.open{display:flex;}
+@keyframes lbIn{from{opacity:0;}to{opacity:1;}}
+#lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:10px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.6);animation:lbImgIn .35s ease;}
+@keyframes lbImgIn{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
+#lightbox-close{position:absolute;top:24px;right:32px;font-size:28px;color:var(--muted);cursor:pointer;transition:color .2s,transform .2s;line-height:1;background:none;border:none;font-family:inherit;}
+#lightbox-close:hover{color:var(--accent);transform:rotate(90deg);}
+#lightbox-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);letter-spacing:.08em;white-space:nowrap;}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding-bottom:100px;align-items:start;}
+.contact-text h3{font-family:'DM Serif Display',serif;font-size:32px;color:var(--text);margin-bottom:18px;line-height:1.2;letter-spacing:-.5px;}
+.contact-text p{color:var(--muted);font-size:13px;line-height:1.85;}
+.contact-avail{margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--accent);border:1px solid rgba(0,212,170,.3);padding:8px 16px;border-radius:4px;background:var(--highlight);}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.contact-link{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:6px;text-decoration:none;transition:all .25s;color:var(--text);position:relative;overflow:hidden;}
+.contact-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--highlight);transition:width .35s;}
+.contact-link:hover{border-color:var(--accent);transform:translateX(5px);}
+.contact-link:hover::before{width:100%;}
+.cl-icon{width:38px;height:38px;background:var(--surface2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;position:relative;z-index:1;transition:background .25s;}
+.contact-link:hover .cl-icon{background:rgba(0,212,170,.15);}
+.cl-body{flex:1;position:relative;z-index:1;}
+.cl-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;}
+.cl-val{font-size:12px;color:var(--text);margin-top:2px;}
+.cl-arrow{color:var(--muted);font-size:14px;transition:color .2s,transform .2s;position:relative;z-index:1;}
+.contact-link:hover .cl-arrow{color:var(--accent);transform:translateX(4px);}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 56px;display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;}
+.footer-copy{font-size:11px;color:var(--muted);}
+.footer-copy span{color:var(--accent);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:translate(0);}
+@media(max-width:900px){#hero{grid-template-columns:1fr;gap:48px;padding-top:120px;}.hero-right{order:-1;align-items:center;}.photo-outer{width:220px;height:270px;}.chip1,.chip2,.chip3{display:none;}nav{padding:16px 24px;}nav.scrolled{padding:12px 24px;}section{padding:0 24px;}footer{padding:24px;flex-direction:column;gap:10px;text-align:center;}.about-grid,.contact-grid{grid-template-columns:1fr;}.skills-grid{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr;}}
+@media(max-width:560px){.skills-grid{grid-template-columns:1fr;}.nav-links{gap:14px;}.hero-stats{gap:20px;flex-wrap:wrap;}h1.hero-name{font-size:40px;}}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+<canvas id="particles"></canvas>
+<div class="bg-grid"></div>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+<nav id="navbar">
+  <div class="nav-logo"><div class="nav-logo-dot"></div>[ J. Ahmed ]</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><div class="hero-tag-dot"></div>Available for Research Collaborations</div>
+    <h1 class="hero-name">Jubayer<br><em>Ahmed</em></h1>
+    <div class="hero-typed-wrap">Chemical Engineering &nbsp;&middot;&nbsp; <span id="typed-text" class="hero-typed"></span><span class="typed-cursor"></span></div>
+    <p class="hero-desc">Undergraduate researcher at RUET with interests in adsorption science, sustainable materials, and environmental remediation. Focused on biomass-derived biochar adsorbents for dye and heavy metal removal from aqueous systems.</p>
+    <div class="hero-actions">
+      <a href="#research" class="btn-primary">&#8595; View My Research</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num" data-count="1">0</span><span class="stat-label">Published Paper</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-num" data-count="2">0</span><span class="stat-label">Years Research</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-num" data-count="2026">0</span><span class="stat-label">Graduation</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-outer">
+      <div class="photo-spin-ring"></div>
+      <div class="photo-inner-mask"></div>
+      <div class="photo-img-wrap" id="photo-img-wrap">
+        <img src="images/profile.jpg" alt="Jubayer Ahmed" class="photo-img"
+             onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\' onclick=\'document.getElementById(\"pu\").click()\'><div class=\'ph-circle\'>&#128100;</div><div class=\'ph-text\'><strong>Add Photo</strong>images/profile.jpg</div></div><input id=\'pu\' type=\'file\' accept=\'image/*\' style=\'display:none\' onchange=\'uploadPhoto(this)\'>'">
+      </div>
+      <div class="photo-glow"></div>
+    </div>
+    <div class="photo-chip chip1"><div class="chip-dot g"></div>3rd Year &middot; ChemEng &middot; RUET</div>
+    <div class="photo-chip chip2"><div class="chip-dot o"></div>1 Paper Published &#127881;</div>
+    <div class="photo-chip chip3"><div class="chip-dot b"></div>Rajshahi, BD &#127988;</div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+<div class="section-divider"></div>
+
+<section id="about">
+  <div class="section-header reveal"><span class="section-num">01 &mdash;</span><h2 class="section-title">About Me</h2><div class="section-line"></div></div>
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <p>I am Jubayer Ahmed, a Chemical Engineering undergraduate at RUET with a strong passion for research. My current work focuses on adsorption-based wastewater treatment, particularly the development of functionalized biochar derived from agricultural waste for the removal of hazardous dyes from aqueous systems.</p>
+      <p>My research experience includes preparation and activation of biomass-derived adsorbents, physicochemical characterization using FTIR, XRD, and SEM&ndash;EDX, and adsorption modeling involving kinetic, isotherm, and thermodynamic analyses. I also work with Response Surface Methodology (RSM) and Box&ndash;Behnken Design (BBD).</p>
+      <p>While adsorption and environmental remediation are my current focus, I am broadly interested in sustainable materials, process optimization, and emerging environmental technologies. I strongly value collaborative and interdisciplinary research and welcome opportunities to work with researchers, students, and academic groups on innovative projects.</p>
+      <p>I believe that meaningful scientific progress is often achieved through collaboration and the exchange of ideas across disciplines.</p>
+    </div>
+    <div class="about-info reveal-right">
+      <div class="info-row"><span class="info-icon">&#127891;</span><div><div class="info-label">University</div><div class="info-val">Rajshahi University of Engineering &amp; Technology (RUET)</div></div></div>
+      <div class="info-row"><span class="info-icon">&#128205;</span><div><div class="info-label">Location</div><div class="info-val">Rajshahi, Bangladesh</div></div></div>
+      <div class="info-row"><span class="info-icon">&#128231;</span><div><div class="info-label">Email</div><div class="info-val"><a href="mailto:juabyerahmedtalha94@gmail.com">juabyerahmedtalha94@gmail.com</a></div></div></div>
+      <div class="info-row"><span class="info-icon">&#128300;</span><div><div class="info-label">Research Focus</div><div class="info-val">Adsorption Science &amp; Environmental Remediation</div></div></div>
+      <div class="info-row"><span class="info-icon">&#127807;</span><div><div class="info-label">Research Interests</div><div class="info-val">Biochar &middot; Wastewater Treatment &middot; RSM &middot; Supercapacitor</div></div></div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<section id="education">
+  <div class="section-header reveal"><span class="section-num">02 &mdash;</span><h2 class="section-title">Education</h2><div class="section-line"></div></div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-icon">&#127891;</div>
+      <div class="edu-body"><h3>B.Sc. in Chemical Engineering</h3><div class="edu-inst">Rajshahi University of Engineering &amp; Technology (RUET)</div><div class="edu-detail">CGPA: 3.90 / 4.00 &middot; Department of Chemical Engineering</div></div>
+      <div class="edu-right"><div class="edu-year">2022 &mdash; Present</div><div class="edu-badge">Current</div></div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon">&#127979;</div>
+      <div class="edu-body"><h3>Higher Secondary Certificate (HSC)</h3><div class="edu-inst">Notre Dame College, Dhaka &middot; Science Group</div><div class="edu-detail">GPA: 5.00 / 5.00 &middot; Physics, Chemistry, Mathematics &middot; Biology</div></div>
+      <div class="edu-right"><div class="edu-year">2020 &mdash; 2022</div><div class="edu-badge">Completed</div></div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<section id="research">
+  <div class="section-header reveal"><span class="section-num">03 &mdash;</span><h2 class="section-title">Research</h2><div class="section-line"></div></div>
+  <div class="interests-grid reveal">
+    <div class="interest-tag"><div class="interest-dot"></div>Adsorption &amp; Surface Chemistry</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Biochar &amp; Biomass-Derived Materials</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Wastewater Treatment Technologies</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Environmental Remediation</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Process Optimization (RSM, BBD)</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Post-Adsorption Valorization</div>
+    <div class="interest-tag"><div class="interest-dot"></div>Supercapacitor Applications</div>
+  </div>
+  <div class="research-grid">
+    <div class="research-card reveal" id="rc1">
+      <div class="research-meta">
+        <span class="badge badge-pub">&#10003; Published</span>
+        <span class="badge badge-journal">Int. J. Biol. Macromol.</span>
+        <span class="research-year">2025</span>
+      </div>
+      <h3>Biochar-Based Adsorbents from Agricultural Biomass for Dye &amp; Heavy Metal Removal from Aqueous Systems</h3>
+      <p>Development of cost-effective and eco-friendly technology for the removal of toxicants from industrial wastewater is undoubtedly a crucial issue. Currently, a huge amount of crude wastewater has been discharged from several types of large/medium-scale industries (like Textile), which could destroy the aquatic environment/public health. To solve this issue, numerous high-tech processes have been suggested for the effective fabrication of CNC-AC-based bionanosorbents that could be innovative, economical, and beneficial in water treatment technology. Additionally, some advanced characterization methods (i.e., XRD, NMR, FTIR, DSC, TGA, BET, FESEM, XPS, AFM, TEM, DLS, ZP, etc.) along with the application mode and synergistic mechanism regarding the elimination of various pollutants have also been offered for better understanding the significance and selectivity. This can be superior to others due to its lower cost, superior efficiency, ecological nature, and greater stability. Also, the designated precursors like biomass-derived CNC and AC would be more available, economical, and reveal outstanding physicochemical, thermomechanical, microstructural, and morphological properties that must boost the capacities (&sim;99&thinsp;%) of the forthcoming CNC-AC biocomposites. This review will be dedicated to offering a robust database addressing the effective processing of precursors, high-tech fabrication, characterization, application, and synergistic mechanisms. By determining research gaps and proposing impending instructions, this paper also offers some mathematical models to predict the experimental BTC curve.</p>
+      <div class="research-footer">
+        <div class="research-authors">Authors: <span>Jubayer Ahmed</span> et al. &middot; RUET, Bangladesh</div>
+        <a href="https://doi.org/10.1016/j.ijbiomac.2025.147433" target="_blank" rel="noopener" class="paper-link">&#8599; Read Paper (DOI)</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<section id="skills">
+  <div class="section-header reveal"><span class="section-num">04 &mdash;</span><h2 class="section-title">Skills</h2><div class="section-line"></div></div>
+  <div class="skills-section"><div class="skills-grid">
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#9879;&#65039;</span><span class="skill-cat-name">Laboratory Skills</span></div><div class="skill-list"><span class="skill-tag">Adsorption Experiments</span><span class="skill-tag">Biochar Preparation</span><span class="skill-tag">Biochar Activation</span><span class="skill-tag">Soxhlet Extraction</span><span class="skill-tag">FTIR Interpretation</span><span class="skill-tag">XRD Analysis</span><span class="skill-tag">SEM&ndash;EDX Analysis</span></div></div>
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#128187;</span><span class="skill-cat-name">Software &amp; Simulation</span></div><div class="skill-list"><span class="skill-tag">Origin</span><span class="skill-tag">MS Excel</span><span class="skill-tag">RSM (BBD)</span><span class="skill-tag">Isotherm Modeling</span><span class="skill-tag">Kinetic Modeling</span><span class="skill-tag">MATLAB</span><span class="skill-tag">Python</span></div></div>
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#128202;</span><span class="skill-cat-name">Research &amp; Analysis</span></div><div class="skill-list"><span class="skill-tag">Data Analysis</span><span class="skill-tag">Literature Review</span><span class="skill-tag">Technical Writing</span><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">LaTeX</span><span class="skill-tag">Origin</span></div></div>
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#129514;</span><span class="skill-cat-name">Core Engineering</span></div><div class="skill-list"><span class="skill-tag">Thermodynamics</span><span class="skill-tag">Fluid Mechanics</span><span class="skill-tag">Mass Transfer</span><span class="skill-tag">Reaction Engineering</span><span class="skill-tag">Process Control</span><span class="skill-tag">Transport Phenomena</span></div></div>
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#127758;</span><span class="skill-cat-name">Languages</span></div><div class="skill-list"><span class="skill-tag">Bengali (Native)</span><span class="skill-tag">English (Fluent)</span></div></div>
+    <div class="skill-category reveal"><div class="skill-cat-header"><span class="skill-cat-icon">&#129309;</span><span class="skill-cat-name">Soft Skills</span></div><div class="skill-list"><span class="skill-tag">Critical Thinking</span><span class="skill-tag">Team Collaboration</span><span class="skill-tag">Presentation</span><span class="skill-tag">Problem Solving</span><span class="skill-tag">Time Management</span></div></div>
+  </div></div>
+</section>
+<div class="section-divider"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="if(event.target===this)closeLB()">
+  <button id="lightbox-close" onclick="closeLB()">&#10005;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+</div>
+
+<section id="gallery">
+  <div class="section-header reveal"><span class="section-num">05 &mdash;</span><h2 class="section-title">Research Gallery</h2><div class="section-line"></div></div>
+  <div class="gallery-section">
+    <div class="gallery-intro reveal">
+      &#128204; <strong>GitHub setup:</strong> Create an <code>images/</code> folder in your repo. Save your photos as <code>images/fig1.jpg</code> and <code>images/fig2.jpg</code> &mdash; they will appear here automatically.
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card" id="gc1" onclick="openLB('images/fig1.jpg','Research Figure 1 &mdash; Experimental Setup &amp; Analysis')">
+        <div class="gallery-img-wrap">
+          <img src="images/fig1.jpg" alt="Research Figure 1"
+               onload="this.closest('.gallery-card').classList.add('loaded')"
+               onerror="showGalleryPlaceholder(this,'images/fig1.jpg')">
+        </div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text">&#128269; Click to enlarge</div></div>
+        <div class="gallery-caption"><div class="gallery-caption-dot"></div>Figure 1 &mdash; Experimental Setup &amp; Analysis</div>
+      </div>
+      <div class="gallery-card" id="gc2" onclick="openLB('images/fig2.jpg','Research Figure 2 &mdash; Data Visualization &amp; Results')">
+        <div class="gallery-img-wrap">
+          <img src="images/fig2.jpg" alt="Research Figure 2"
+               onload="this.closest('.gallery-card').classList.add('loaded')"
+               onerror="showGalleryPlaceholder(this,'images/fig2.jpg')">
+        </div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text">&#128269; Click to enlarge</div></div>
+        <div class="gallery-caption"><div class="gallery-caption-dot"></div>Figure 2 &mdash; Data Visualization &amp; Results</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<section id="contact">
+  <div class="section-header reveal"><span class="section-num">06 &mdash;</span><h2 class="section-title">Contact</h2><div class="section-line"></div></div>
+  <div class="contact-grid">
+    <div class="contact-text reveal-left">
+      <h3>Let's collaborate on something meaningful.</h3>
+      <p>I'm open to research collaborations, academic discussions, internship opportunities, and conference connections. Whether you're a faculty member, fellow student, or industry professional &mdash; reach out!</p>
+      <div class="contact-avail"><div class="hero-tag-dot"></div>Currently available &middot; Open to opportunities</div>
+    </div>
+    <div class="contact-links reveal-right">
+      <a href="mailto:juabyerahmedtalha94@gmail.com" class="contact-link"><div class="cl-icon">&#9993;&#65039;</div><div class="cl-body"><div class="cl-label">Email</div><div class="cl-val">juabyerahmedtalha94@gmail.com</div></div><span class="cl-arrow">&#8594;</span></a>
+      <a href="https://www.linkedin.com/in/jubayer-ahmed-7996122a8" target="_blank" rel="noopener" class="contact-link"><div class="cl-icon">&#128188;</div><div class="cl-body"><div class="cl-label">LinkedIn</div><div class="cl-val">linkedin.com/in/jubayer-ahmed</div></div><span class="cl-arrow">&#8594;</span></a>
+      <a href="https://www.researchgate.net/profile/Jubayer-Ahmed-25" target="_blank" rel="noopener" class="contact-link"><div class="cl-icon">&#128300;</div><div class="cl-body"><div class="cl-label">ResearchGate</div><div class="cl-val">researchgate.net/Jubayer-Ahmed-25</div></div><span class="cl-arrow">&#8594;</span></a>
+      <a href="https://scholar.google.com/citations?user=-Bmg7JYAAAAJ&hl=en" target="_blank" rel="noopener" class="contact-link"><div class="cl-icon">&#127891;</div><div class="cl-body"><div class="cl-label">Google Scholar</div><div class="cl-val">View Publications</div></div><span class="cl-arrow">&#8594;</span></a>
+      <a href="https://orcid.org/0009-0003-6183-0796" target="_blank" rel="noopener" class="contact-link"><div class="cl-icon">&#128221;</div><div class="cl-body"><div class="cl-label">ORCID</div><div class="cl-val">0009-0003-6183-0796</div></div><span class="cl-arrow">&#8594;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">&#169; 2025 <span>Jubayer Ahmed</span> &middot; Chemical Engineering Researcher</div>
+  <div class="footer-copy">Crafted with &#9825; &middot; Rajshahi, Bangladesh</div>
+</footer>
+
+<script>
+var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+document.querySelectorAll('a,button,.skill-tag,.interest-tag,.gallery-card').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.style.width='16px';cur.style.height='16px';cur.style.background='var(--accent2)';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='var(--accent2)';});
+  el.addEventListener('mouseleave',function(){cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--accent)';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(0,212,170,.4)';});
+});
+(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+var canvas=document.getElementById('particles'),ctx=canvas.getContext('2d'),W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+var dots=[];
+function Dot(){this.reset(true);}
+Dot.prototype.reset=function(init){this.x=Math.random()*W;this.y=init?Math.random()*H:H+5;this.r=Math.random()*1.4+.3;this.vx=(Math.random()-.5)*.25;this.vy=-(Math.random()*.3+.05);this.life=0;this.maxLife=Math.random()*300+200;this.col=Math.random()>.55?'0,212,170':Math.random()>.4?'126,184,201':'255,107,53';};
+Dot.prototype.step=function(){this.x+=this.vx;this.y+=this.vy;this.life++;if(this.life>this.maxLife||this.y<-10)this.reset(false);};
+Dot.prototype.draw=function(){var a=Math.min(this.life/40,1)*Math.min((this.maxLife-this.life)/40,1)*.5;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba('+this.col+','+a+')';ctx.fill();};
+for(var i=0;i<80;i++)dots.push(new Dot());
+function drawEdges(){for(var i=0;i<dots.length;i++){for(var j=i+1;j<dots.length;j++){var dx=dots[i].x-dots[j].x,dy=dots[i].y-dots[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(dots[i].x,dots[i].y);ctx.lineTo(dots[j].x,dots[j].y);ctx.strokeStyle='rgba(0,212,170,'+(0.05*(1-d/110))+')';ctx.lineWidth=.5;ctx.stroke();}}}}
+(function loop(){ctx.clearRect(0,0,W,H);drawEdges();dots.forEach(function(d){d.step();d.draw();});requestAnimationFrame(loop);})();
+var prog=document.getElementById('scroll-progress');
+window.addEventListener('scroll',function(){prog.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
+var navbar=document.getElementById('navbar');
+var secs=document.querySelectorAll('section[id]'),navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){navbar.classList.toggle('scrolled',window.scrollY>60);var c='';secs.forEach(function(s){if(window.scrollY>=s.offsetTop-130)c=s.id;});navAs.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+c);});});
+var phrases=['3rd Year Undergraduate','Research Enthusiast'],pi=0,ci=0,del=false;
+var tel=document.getElementById('typed-text');
+function typeIt(){var p=phrases[pi];if(!del){tel.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(typeIt,1900);return;}setTimeout(typeIt,70);}else{tel.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(typeIt,350);return;}setTimeout(typeIt,35);}}
+setTimeout(typeIt,900);
+function countUp(el,target){var dur=target>100?1400:700,start=Date.now();(function t(){var p=Math.min((Date.now()-start)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p;el.textContent=Math.round(e*target);if(p<1)requestAnimationFrame(t);else el.textContent=target;})();}
+var counted=false,fc=document.querySelector('[data-count]');
+if(fc)new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!counted){counted=true;document.querySelectorAll('[data-count]').forEach(function(e){countUp(e,+e.dataset.count);});}},{threshold:.5}).observe(fc);
+var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){revObs.observe(el);});
+var rc1=document.getElementById('rc1');
+if(rc1)rc1.addEventListener('mousemove',function(e){var r=rc1.getBoundingClientRect();rc1.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');rc1.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});
+/* Gallery scroll-in animation */
+var galObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');galObs.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.gallery-card').forEach(function(c){galObs.observe(c);});
+function showGalleryPlaceholder(img,path){var wrap=img.closest('.gallery-img-wrap');wrap.innerHTML='<div class="gallery-placeholder"><div class="gallery-placeholder-icon">&#128247;</div><div class="gallery-placeholder-text">Upload your image to GitHub as:<code>'+path+'</code></div></div>';img.closest('.gallery-card').classList.add('loaded');}
+function openLB(src,cap){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-caption').innerHTML=cap||'';document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLB(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lightbox-img').src='';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();});
+function uploadPhoto(input){var file=input.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(e){var wrap=document.getElementById('photo-img-wrap');wrap.innerHTML='<img src="'+e.target.result+'" class="photo-img" alt="Jubayer Ahmed">';}; reader.readAsDataURL(file);}
+</script>
+</body>
+</html>
